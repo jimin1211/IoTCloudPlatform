@@ -21,13 +21,13 @@ import com.amazonaws.services.lambda.runtime.RequestHandler;
 public class LogDeviceHandler implements RequestHandler<Event, String> {
 
     private DynamoDB dynamoDb;
-    private String DYNAMODB_TABLE_NAME = "Logging";
+    private String DYNAMODB_TABLE_NAME = "Project";
 
     @Override
     public String handleRequest(Event input, Context context) {
         this.initDynamoDbClient();
 
-        Table table = dynamoDb.getTable(DYNAMODB_TABLE_NAME);  //dynamoDB에서 해당되는 테이블('Logging')을 얻음
+        Table table = dynamoDb.getTable(DYNAMODB_TABLE_NAME);  //dynamoDB에서 해당되는 테이블('Project')을 얻음
 
         long from=0;
         long to=0;
