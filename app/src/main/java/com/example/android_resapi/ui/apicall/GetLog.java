@@ -1,5 +1,7 @@
 package com.example.android_resapi.ui.apicall;
 
+import static java.lang.Float.parseFloat;
+
 import android.app.Activity;
 import android.graphics.Color;
 import android.util.Log;
@@ -45,7 +47,7 @@ public class GetLog extends GetRequest {
             TextView textView_Time2 = activity.findViewById(R.id.textView_time2);
 
             String params = String.format("?from=%s:00&to=%s:00",textView_Date1.getText().toString()+textView_Time1.getText().toString(),
-                                                            textView_Date2.getText().toString()+textView_Time2.getText().toString());
+                    textView_Date2.getText().toString()+textView_Time2.getText().toString());
 
             Log.i(TAG,"urlStr="+urlStr+params);
             url = new URL(urlStr+params);
@@ -72,16 +74,13 @@ public class GetLog extends GetRequest {
         LineChart lineChart = (LineChart) activity.findViewById(R.id.chart);
         ArrayList<Entry> entries = new ArrayList<>();
 
-//        SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss", Locale.KOREA);
-
         for(int i = 0; i < arrayList.size(); i++){
 
-            entries.add(new Entry(i,Float.parseFloat(arrayList.get(i).distance)));
-            if(i==10){
-                Log.e(TAG, arrayList.get(i).distance);
-            }
+            String str = arrayList.get(i).timestamp.substring(12, 17);
+
+            entries.add(new Entry(i, parseFloat(arrayList.get(i).distance)));
+
         }
-        Log.e(TAG, "arrayList.size: "+arrayList.size());
 
         LineDataSet set1;
         set1 = new LineDataSet(entries, "DataSet 1");
@@ -96,6 +95,7 @@ public class GetLog extends GetRequest {
         set1.setColor(Color.BLACK);
         set1.setCircleColor(Color.BLACK);
 
+        lineChart.invalidate();
         // set data
         lineChart.setData(data);
 
@@ -132,7 +132,6 @@ public class GetLog extends GetRequest {
 
                 output.add(thing);
             }
-            Log.e(TAG, "jsonArray.length: "+jsonArray.length());
 
         } catch (JSONException e) {
             //Log.e(TAG, "Exception in processing JSONString.", e);
@@ -157,4 +156,3 @@ public class GetLog extends GetRequest {
         }
     }
 }
-
