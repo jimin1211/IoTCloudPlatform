@@ -14,14 +14,13 @@ import com.example.android_resapi.R;
 
 public class MainActivity extends AppCompatActivity {
     final static String TAG = "AndroidAPITest";
-    EditText listThingsURL, thingShadowURL, getLogsURL;
+    EditText thingShadowURL, getLogsURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listThingsURL = findViewById(R.id.listThingsURL);
         thingShadowURL = findViewById(R.id.thingShadowURL);
         getLogsURL = findViewById(R.id.getLogsURL);
 
