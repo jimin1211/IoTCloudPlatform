@@ -21,8 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textUri"
-            android:hint="https://xxxxxxxxxx.execute-api.ap-northeast-2.amazonaws.com/prod/devices"
-
+            android:hint="https://31pr48s6n1.execute-api.ap-northeast-2.amazonaws.com/prod/devices"
             android:id="@+id/listThingsURL"/>
     </LinearLayout>
     <View
@@ -39,14 +38,14 @@
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:textColor="@color/colorPrimaryDark"
-            android:text="사물상태 조회/변경 API URI"/>
+            android:text="사물상태 조회/변경 (사물 이름 입력)"/>
 
         <EditText
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textUri"
-            android:hint="https://xxxxxxxxxx.execute-api.ap-northeast-2.amazonaws.com/prod/devices/DDDDDDDD"
+            android:hint="https://31pr48s6n1.execute-api.ap-northeast-2.amazonaws.com/prod/devices/MyMKRWiFi1010"
             android:id="@+id/thingShadowURL"/>
     </LinearLayout>
     <View
@@ -63,15 +62,16 @@
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:textColor="@color/colorPrimaryDark"
-            android:text="사물로그 조회 API URI"/>
+            android:text="사물로그 조회 (사물 이름 입력)"/>
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textUri"
-            android:hint="https://xxxxxxxxxx.execute-api.ap-northeast-2.amazonaws.com/prod/devices/DDDDDDDD/log"
+            android:hint="https://31pr48s6n1.execute-api.ap-northeast-2.amazonaws.com/prod/devices/MyMKRWiFi1010/log"
             android:id="@+id/getLogsURL"/>
     </LinearLayout>
+
 
     <View
         android:layout_width="match_parent"
@@ -81,26 +81,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <Button
             android:id="@+id/listThingsBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="사물목록 조회"
-             />
+            android:text="사물 목록 조회" />
         <Button
             android:id="@+id/thingShadowBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="사물상태 조회/변경"
-           />
+            />
+
         <Button
             android:id="@+id/listLogsBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="로그 조회"
-             />
+            android:text="로그 조회" />
 
     </LinearLayout>
-
 
 </LinearLayout>

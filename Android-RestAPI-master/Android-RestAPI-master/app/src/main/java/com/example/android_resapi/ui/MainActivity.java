@@ -28,14 +28,14 @@ public class MainActivity extends AppCompatActivity {
         Button listThingsBtn = findViewById(R.id.listThingsBtn);
         listThingsBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String urlstr = listThingsURL.getText().toString();
+                String urlstr = "https://31pr48s6n1.execute-api.ap-northeast-2.amazonaws.com/prod/devices";
                 Log.i(TAG, "listThingsURL=" + urlstr);
                 if (urlstr == null || urlstr.equals("")) {
                     Toast.makeText(MainActivity.this, "사물목록 조회 API URI 입력이 필요합니다.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Intent intent = new Intent(MainActivity.this, ListThingsActivity.class);
-                intent.putExtra("listThingsURL", listThingsURL.getText().toString());
+                intent.putExtra("listThingsURL", urlstr);
                 startActivity(intent);
                 //  new GetThings(MainActivity.this).execute();
                 //  new GetThingShadow(MainActivity.this, "MyMKRWiFi1010").execute();
@@ -47,13 +47,13 @@ public class MainActivity extends AppCompatActivity {
         thingShadowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String urlstr = thingShadowURL.getText().toString();
-                if (urlstr == null || urlstr.equals("")) {
-                    Toast.makeText(MainActivity.this, "사물상태 조회/변경 API URI 입력이 필요합니다.", Toast.LENGTH_SHORT).show();
+                String urlstr = "https://31pr48s6n1.execute-api.ap-northeast-2.amazonaws.com/prod/devices/";
+                if (thingShadowURL.getText().toString() == null || thingShadowURL.getText().toString().equals("")) {
+                    Toast.makeText(MainActivity.this, "사물상태 이름 입력이 필요합니다.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Intent intent = new Intent(MainActivity.this, DeviceActivity.class);
-                intent.putExtra("thingShadowURL", thingShadowURL.getText().toString());
+                intent.putExtra("thingShadowURL", urlstr + thingShadowURL.getText().toString());
                 startActivity(intent);
 
             }
@@ -63,13 +63,13 @@ public class MainActivity extends AppCompatActivity {
         listLogsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String urlstr = getLogsURL.getText().toString();
-                if (urlstr == null || urlstr.equals("")) {
-                    Toast.makeText(MainActivity.this, "사물로그 조회 API URI 입력이 필요합니다.", Toast.LENGTH_SHORT).show();
+                String urlstr = "https://31pr48s6n1.execute-api.ap-northeast-2.amazonaws.com/prod/devices/" + getLogsURL.getText().toString() + "/log";
+                if (getLogsURL.getText().toString() == null || getLogsURL.getText().toString().equals("")) {
+                    Toast.makeText(MainActivity.this, "사물 이름 입력이 필요합니다.", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Intent intent = new Intent(MainActivity.this, LogActivity.class);
-                intent.putExtra("getLogsURL", getLogsURL.getText().toString());
+                intent.putExtra("getLogsURL", urlstr);
                 startActivity(intent);
             }
         });

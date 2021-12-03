@@ -70,21 +70,21 @@ public class DeviceActivity extends AppCompatActivity {
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText edit_dist = findViewById(R.id.edit_dist);
+//                EditText edit_dist = findViewById(R.id.edit_dist);
                 EditText edit_led = findViewById(R.id.edit_led);
 
                 JSONObject payload = new JSONObject();
 
                 try {
                     JSONArray jsonArray = new JSONArray();
-                    String dist_input = edit_dist.getText().toString();
-                    if (dist_input != null && !dist_input.equals("")) {
-                        JSONObject tag1 = new JSONObject();
-                        tag1.put("tagName", "distance");
-                        tag1.put("tagValue", dist_input);
-
-                        jsonArray.put(tag1);
-                    }
+//                    String dist_input = edit_dist.getText().toString();
+//                    if (dist_input != null && !dist_input.equals("")) {
+//                        JSONObject tag1 = new JSONObject();
+//                        tag1.put("tagName", "distance");
+//                        tag1.put("tagValue", dist_input);
+//
+//                        jsonArray.put(tag1);
+//                    }
 
                     String led_input = edit_led.getText().toString();
                     if (led_input != null && !led_input.equals("")) {

@@ -3,6 +3,7 @@ package com.example.android_resapi.ui;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,6 +15,13 @@ import android.widget.TimePicker;
 
 import com.example.android_resapi.R;
 import com.example.android_resapi.ui.apicall.GetLog;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+
+import java.util.ArrayList;
 
 public class LogActivity extends AppCompatActivity {
     String getLogsURL;
@@ -45,7 +53,7 @@ public class LogActivity extends AppCompatActivity {
                     }
                 };
 
-                DatePickerDialog dialog = new DatePickerDialog(LogActivity.this, callbackMethod, 2020, 12, 0);
+                DatePickerDialog dialog = new DatePickerDialog(LogActivity.this, callbackMethod, 2021, 12, 0);
 
                 dialog.show();
 
@@ -88,7 +96,7 @@ public class LogActivity extends AppCompatActivity {
                     }
                 };
 
-                DatePickerDialog dialog = new DatePickerDialog(LogActivity.this, callbackMethod, 2020, 12, 0);
+                DatePickerDialog dialog = new DatePickerDialog(LogActivity.this, callbackMethod, 2021, 12, 0);
 
                 dialog.show();
 
@@ -123,5 +131,6 @@ public class LogActivity extends AppCompatActivity {
                 new GetLog(LogActivity.this,getLogsURL).execute();
             }
         });
+
     }
 }
