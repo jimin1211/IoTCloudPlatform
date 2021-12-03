@@ -15,17 +15,24 @@ import org.json.JSONObject;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Locale;
 
 import com.example.android_resapi.R;
 import com.example.android_resapi.httpconnection.GetRequest;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
@@ -74,12 +81,14 @@ public class GetLog extends GetRequest {
         LineChart lineChart = (LineChart) activity.findViewById(R.id.chart);
         ArrayList<Entry> entries = new ArrayList<>();
 
+        ArrayList<String> labels = new ArrayList<>();
         for(int i = 0; i < arrayList.size(); i++){
+            labels.add(arrayList.get(i).timestamp.substring(12, 17));
+            Log.e(TAG, "i: "+labels.get(i)+"\n");
 
-            String str = arrayList.get(i).timestamp.substring(12, 17);
+            //String str = arrayList.get(i).timestamp.substring(12, 17);
 
-            entries.add(new Entry(i, parseFloat(arrayList.get(i).distance)));
-
+            entries.add(new Entry(i, Float.parseFloat(arrayList.get(i).distance)));
         }
 
         LineDataSet set1;
@@ -90,6 +99,10 @@ public class GetLog extends GetRequest {
 
         // create a data object with the data sets
         LineData data = new LineData(dataSets);
+
+        XAxis xAxis = lineChart.getXAxis();
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
+
 
         // black lines and points
         set1.setColor(Color.BLACK);
@@ -153,6 +166,63 @@ public class GetLog extends GetRequest {
 
         public String toString() {
             return String.format("[%s] Distance: %s, LED: %s", timestamp, distance, LED);
+        }
+    }
+
+    class IndexAxisValueFormatter extends ValueFormatter
+    {
+        private String[] mValues = new String[] {};
+        private int mValueCount = 0;
+
+        /**
+         * An empty constructor.
+         * Use `setValues` to set the axis labels.
+         */
+        public IndexAxisValueFormatter() {
+        }
+
+        /**
+         * Constructor that specifies axis labels.
+         *
+         * @param values The values string array
+         */
+        public IndexAxisValueFormatter(String[] values) {
+            if (values != null)
+                setValues(values);
+        }
+
+        /**
+         * Constructor that specifies axis labels.
+         *
+         * @param values The values string array
+         */
+        public IndexAxisValueFormatter(Collection<String> values) {
+            if (values != null)
+                setValues(values.toArray(new String[values.size()]));
+        }
+
+//        @Override
+//        public String getFormattedValue(float value, AxisBase axisBase) {
+//            int index = Math.round(value);
+//
+//            if (index < 0 || index >= mValueCount || index != (int)value)
+//                return "";
+//
+//            return mValues[index];
+//        }
+
+        public String[] getValues()
+        {
+            return mValues;
+        }
+
+        public void setValues(String[] values)
+        {
+            if (values == null)
+                values = new String[] {};
+
+            this.mValues = values;
+            this.mValueCount = values.length;
         }
     }
 }
