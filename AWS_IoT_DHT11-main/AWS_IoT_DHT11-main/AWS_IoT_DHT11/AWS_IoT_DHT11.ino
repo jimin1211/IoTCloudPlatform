@@ -3,7 +3,7 @@
   This sketch securely connects to an AWS IoT using MQTT over WiFi.
   It uses a private key stored in the ATECC508A and a public
   certificate for SSL/TLS authetication.
-  It publishes a message every 5 seconds to arduino/outgoing
+  It publishes a message every 1 hours to arduino/outgoing
   topic and subscribes to messages on the arduino/incoming
   topic.
   The circuit:
@@ -93,8 +93,8 @@ void loop() {
   // poll for new MQTT messages and send keep alives
   mqttClient.poll();
 
-  // publish a message roughly every 5 seconds.
-  if (millis() - lastMillis > 5000) {
+  // publish a message roughly every 1 hour.
+  if (millis() - lastMillis > 3600000) {
     lastMillis = millis();
     char payload[512];
     getDeviceStatus(payload);
