@@ -82,13 +82,15 @@ public class GetLog extends GetRequest {
         ArrayList<Entry> entries = new ArrayList<>();
 
         ArrayList<String> labels = new ArrayList<>();
+        float ff;
+
         for(int i = 0; i < arrayList.size(); i++){
             labels.add(arrayList.get(i).timestamp.substring(12, 17));
-            Log.e(TAG, "i: "+labels.get(i)+"\n");
-
+            ff = (Float.parseFloat(arrayList.get(i).timestamp.substring(12, 14))*100+Float.parseFloat(arrayList.get(i).timestamp.substring(15, 17)))/100;
+            Log.e(TAG, "i: "+ff+"\n");
             //String str = arrayList.get(i).timestamp.substring(12, 17);
 
-            entries.add(new Entry(i, Float.parseFloat(arrayList.get(i).distance)));
+            entries.add(new Entry(ff, Float.parseFloat(arrayList.get(i).distance)));
         }
 
         LineDataSet set1;
@@ -100,8 +102,8 @@ public class GetLog extends GetRequest {
         // create a data object with the data sets
         LineData data = new LineData(dataSets);
 
-        XAxis xAxis = lineChart.getXAxis();
-        xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
+        //XAxis xAxis = lineChart.getXAxis();
+        //xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
 
 
         // black lines and points
@@ -166,63 +168,6 @@ public class GetLog extends GetRequest {
 
         public String toString() {
             return String.format("[%s] Distance: %s, LED: %s", timestamp, distance, LED);
-        }
-    }
-
-    class IndexAxisValueFormatter extends ValueFormatter
-    {
-        private String[] mValues = new String[] {};
-        private int mValueCount = 0;
-
-        /**
-         * An empty constructor.
-         * Use `setValues` to set the axis labels.
-         */
-        public IndexAxisValueFormatter() {
-        }
-
-        /**
-         * Constructor that specifies axis labels.
-         *
-         * @param values The values string array
-         */
-        public IndexAxisValueFormatter(String[] values) {
-            if (values != null)
-                setValues(values);
-        }
-
-        /**
-         * Constructor that specifies axis labels.
-         *
-         * @param values The values string array
-         */
-        public IndexAxisValueFormatter(Collection<String> values) {
-            if (values != null)
-                setValues(values.toArray(new String[values.size()]));
-        }
-
-//        @Override
-//        public String getFormattedValue(float value, AxisBase axisBase) {
-//            int index = Math.round(value);
-//
-//            if (index < 0 || index >= mValueCount || index != (int)value)
-//                return "";
-//
-//            return mValues[index];
-//        }
-
-        public String[] getValues()
-        {
-            return mValues;
-        }
-
-        public void setValues(String[] values)
-        {
-            if (values == null)
-                values = new String[] {};
-
-            this.mValues = values;
-            this.mValueCount = values.length;
         }
     }
 }
