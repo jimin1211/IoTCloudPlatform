@@ -22,9 +22,15 @@
   * 디바이스 로그 조회
 
 Arduino: https://github.com/jimin1211/IoTCloudPlatform/tree/main/AWS_IoT_DHT11-main/AWS_IoT_DHT11-main/AWS_IoT_DHT11
+
 Android App: https://github.com/jimin1211/IoTCloudPlatform/tree/main/Android-RestAPI-master
+
 DynamoDB 저장 Lambda: https://github.com/jimin1211/IoTCloudPlatform/tree/main/ProjectRecordingDeviceDataLambdaJavaProject
+
 디바이스 목록 조회 Lambda: https://github.com/jimin1211/IoTCloudPlatform/tree/main/ProjectListingDeviceLambdaJavaProject
+
 디바이스 상태 조회 Lambda: https://github.com/jimin1211/IoTCloudPlatform/tree/main/ProjectGetDeviceLambdaJavaProject
+
 디바이스 상태 변경 Lambda: https://github.com/jimin1211/IoTCloudPlatform/tree/main/ProjectUpdateDeviceLambdaJavaProject
+
 디바이스 로그 조회 Lambda: https://github.com/jimin1211/IoTCloudPlatform/tree/main/ProjectLogDeviceLambdaJavaProject
