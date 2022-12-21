@@ -1,0 +1,7 @@
+#Internal package file, do not edit.
+#Wed Dec 01 17:29:04 KST 2021
+0.base=C\:\\Users\\Owner\\Downloads\\Android-RestAPI-master\\Android-RestAPI-master\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
+0.path=classes.dex
+count=1
+0.baseType=DIRECTORY
+0.set=DEX
